@@ -1,11 +1,36 @@
-import React from 'react';
+import React from "react";
+import { useLoaderData, useParams } from "react-router";
+import { addStoredDB } from "../../utility/addToDB";
 
 const BookDetails = () => {
-    return (
-        <div>
-            <h2>book details</h2>
-        </div>
-    );
+  const { id } = useParams();
+  const bookId = parseInt(id);
+  const data = useLoaderData();
+  const singleBook = data.find((book) => book.bookId === bookId);
+  const { bookName, image } = singleBook || {};
+  //   console.log(data);
+  //   console.log(id);
+
+  const handleMarkAsRead = (id) => {
+    addStoredDB(id);
+  };
+
+  return (
+    <div className="w-2/3 mx-auto items-center border-2 flex flex-col">
+      <img className="w-48 justify-center items-center" src={image} alt="" />
+      <h5>{bookName}</h5>
+
+      <div>
+        <button
+          onClick={() => handleMarkAsRead(id)}
+          className="btn btn-accent m-2"
+        >
+          Mark as Read
+        </button>
+        <button className="btn btn-info m-2">WishList</button>
+      </div>
+    </div>
+  );
 };
 
 export default BookDetails;
