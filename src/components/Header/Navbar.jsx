@@ -1,7 +1,6 @@
 import React from "react";
 import { Link } from "react-router";
 
-
 const Navbar = () => {
   return (
     <div className="navbar bg-base-100 shadow-sm">

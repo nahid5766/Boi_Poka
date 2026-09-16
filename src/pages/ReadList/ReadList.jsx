@@ -4,6 +4,10 @@ import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import "react-tabs/style/react-tabs.css";
 import { getStoredBook } from "../../utility/addToDB";
 import Book from "../Book/Book";
+import Swal from "sweetalert2";
+import withReactContent from "sweetalert2-react-content";
+
+const MySwal = withReactContent(Swal);
 
 const ReadList = () => {
   // worst case
@@ -27,15 +31,18 @@ const ReadList = () => {
   const handleSort = (type) => {
     setSort(type);
     if (type === "pages") {
-      const sortedByPage = [...readList].sort(
-        (a, b) => a.totalPages - b.totalPages,
-      );
+      const sortedByPage = [...readList].sort((a, b) => a.s - b.totalPages);
       setReadList(sortedByPage);
     }
     if (type === "ratings") {
       const sortedByRating = [...readList].sort((a, b) => a.rating - b.rating);
       setReadList(sortedByRating);
     }
+    Swal.fire({
+      title: "Good job!",
+      text: "You clicked the button!",
+      icon: "success",
+    });
   };
 
   return (
@@ -60,10 +67,11 @@ const ReadList = () => {
 
         <TabPanel>
           <h2>Book i read: {readList.length}</h2>
-
-          {readList.map((b) => (
-            <Book key={b.bookId} singleBook={b}></Book>
-          ))}
+          <div className="mb-10 gap-5 grid grid-cols-1 md:grid-cols-3">
+            {readList.map((b) => (
+              <Book key={b.bookId} singleBook={b}></Book>
+            ))}
+          </div>
         </TabPanel>
 
         <TabPanel>

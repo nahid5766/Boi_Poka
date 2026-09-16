@@ -2,18 +2,22 @@ import React from "react";
 import { useLoaderData, useParams } from "react-router";
 import { addStoredDB } from "../../utility/addToDB";
 
+// sweetalert2
 import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
 
 const MySwal = withReactContent(Swal);
 
 const BookDetails = () => {
+  // useParams() holo react router er hook
   const { id } = useParams();
+  // most notably in JavaScript—to extract or convert a string into an integer (whole number)
   const bookId = parseInt(id);
   const data = useLoaderData();
   const singleBook = data.find((book) => book.bookId === bookId);
+  // Output jode na ase taile undefined asbe but >>> error dekhabe na.
   const { bookName, image } = singleBook || {};
-  //   console.log(data);
+  //   console.log(data);s
   //   console.log(id);
 
   const handleMarkAsRead = (id) => {
