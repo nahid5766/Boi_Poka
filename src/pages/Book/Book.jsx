@@ -16,7 +16,7 @@ const Book = ({ singleBook }) => {
   
   return (
     <Link to={`/bookDetails/${bookId}`}>
-      <div className="card bg-base-100 w-90 shadow-xl p-4 border">
+      <div className="card bg-base-100 w-90 h-full shadow-xl p-4 border">
         <figure className="bg-gray-100 w-70 rounded-xl p-5 mx-auto">
           <img className="w-4/6" src={image} alt="Shoes" />
         </figure>
